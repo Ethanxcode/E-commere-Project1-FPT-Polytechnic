@@ -292,7 +292,7 @@ header("Cache-Control: max-age=2592000");
                             </div>
                         </li>
                         <!-- end mega menu -->
-                        <li><a href="#">blog</a></li>
+                        <li><a href="./blog.php">Blog</a></li>
                         <li><a href="#">contact</a></li>
                     </ul>
                 </div>
