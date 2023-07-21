@@ -46,12 +46,13 @@ class cart
 
     public function update_quantity_cart($quantity, $cartId)
     {
-
+        echo $quantity;
+        echo $cartId;
         $query = "UPDATE tbl_cart SET 
         quantity = '$quantity'
         WHERE cartId = '$cartId' ";
         $result = $this->db->update($query);
-        return $result;
+        // return $result;
 
     }
     public function delete_product_cart($cartId)

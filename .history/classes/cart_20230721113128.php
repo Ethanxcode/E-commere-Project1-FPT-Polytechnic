@@ -46,7 +46,8 @@ class cart
 
     public function update_quantity_cart($quantity, $cartId)
     {
-
+        echo $quantity;
+        echo $cartId;
         $query = "UPDATE tbl_cart SET 
         quantity = '$quantity'
         WHERE cartId = '$cartId' ";
@@ -300,34 +301,35 @@ VALUES ('$customer_id', NOW(), '$notes', '$totalPrice', '$address', '$discountAm
 
     public function shifted($id, $time, $price, $total_price)
     {
-
+        echo $price;
+        echo $total_price;
         $query = "UPDATE tbl_order_items SET 
-            status = '1'
-          WHERE id = '$id' AND order_date = '$time' AND total_price = '$total_price'";
+                status = '1'
+              WHERE id = '$id' AND order_date = '$time' AND total_price = '$total_price'";
         $result = $this->db->update($query);
 
         if ($result) {
             $msg = '<div class="alert alert-success" role="alert">
-                Cập nhật thành công
-            </div>';
+                    Cập nhật thành công
+                </div>';
 
             // Tăng sales của sản phẩm
             $querySales = "UPDATE tbl_product SET 
-                    sales = sales + (
-                        SELECT quantity 
-                        FROM tbl_order_items
-                        WHERE id = '$id' AND order_date = '$time'
-                    ),
-                    stock = stock - (
-                        SELECT quantity 
-                        FROM tbl_order 
-                        WHERE orderId = '$id' AND date_order = '$time' AND price = '$price'
-                    )
-                   WHERE productId = (
-                        SELECT productId 
-                        FROM tbl_order 
-                        WHERE id = '$id' AND date_order = '$time' AND price = '$price'
-                    )";
+                        sales = sales + (
+                            SELECT quantity 
+                            FROM tbl_order_items
+                            WHERE id = '$id' AND order_date = '$time'
+                        )
+                        stock = stock - (
+                            SELECT quantity 
+                            FROM tbl_order 
+                            WHERE orderId = '$id' AND date_order = '$time' AND price = '$price'
+                        )
+                       WHERE productId = (
+                            SELECT productId 
+                            FROM tbl_order 
+                            WHERE id = '$id' AND order_date = '$time' AND price = '$price'
+                        )";
 
             $resultSales = $this->db->update($querySales);
 
@@ -337,12 +339,11 @@ VALUES ('$customer_id', NOW(), '$notes', '$totalPrice', '$address', '$discountAm
 
         } else {
             $msg = '<div class="alert alert-danger" role="alert">
-                Cập nhật thất bại 
-            </div>';
+                    Cập nhật thất bại 
+                </div>';
             return $msg;
         }
     }
-
 
     public function del_shifted($id, $time, $price, $total_price)
     {

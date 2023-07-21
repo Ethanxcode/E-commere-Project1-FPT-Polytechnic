@@ -25,7 +25,7 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'order') {
                     }
                 }
                 ?>
-                <h1 class="alert-heading mb-3">Đơn hàng
+                <h1 class="alert-heading mb-3">Đơn hàng #
                 </h1>
                 <p class="mb-2 info ">Cám ơn bạn đã chọn chúng tôi, đơn hàng của bạn đang được chuẩn bị!!
                 </p>

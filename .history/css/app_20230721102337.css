@@ -119,7 +119,7 @@ ul.devided > li:last-child {
 .dropdown-content {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+
 	opacity: 0;
 	visibility: hidden;
 	position: absolute;

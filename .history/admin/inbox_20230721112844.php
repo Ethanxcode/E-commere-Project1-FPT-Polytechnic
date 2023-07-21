@@ -10,13 +10,14 @@ $ct = new cart();
 if (isset($_GET['shiftid'])) {
 
 	$id = $_GET['shiftid'];
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
 	$shifted = $ct->shifted($id, $time, $price, $total_price);
 }
 if (isset($_GET['confid'])) {
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
+
 	$id = $_GET['confid'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
@@ -24,7 +25,7 @@ if (isset($_GET['confid'])) {
 }
 if (isset($_GET['delid'])) {
 	$id = $_GET['delid'];
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
 	$del_shifted = $ct->del_shifted($id, $time, $price, $total_price);

@@ -46,7 +46,8 @@ class cart
 
     public function update_quantity_cart($quantity, $cartId)
     {
-
+        echo $quantity;
+        echo $cartId;
         $query = "UPDATE tbl_cart SET 
         quantity = '$quantity'
         WHERE cartId = '$cartId' ";
@@ -300,7 +301,8 @@ VALUES ('$customer_id', NOW(), '$notes', '$totalPrice', '$address', '$discountAm
 
     public function shifted($id, $time, $price, $total_price)
     {
-
+        echo $price;
+        echo $total_price;
         $query = "UPDATE tbl_order_items SET 
             status = '1'
           WHERE id = '$id' AND order_date = '$time' AND total_price = '$total_price'";
@@ -326,7 +328,7 @@ VALUES ('$customer_id', NOW(), '$notes', '$totalPrice', '$address', '$discountAm
                    WHERE productId = (
                         SELECT productId 
                         FROM tbl_order 
-                        WHERE id = '$id' AND date_order = '$time' AND price = '$price'
+                        WHERE id = '$id' AND order_date = '$time' AND price = '$price'
                     )";
 
             $resultSales = $this->db->update($querySales);

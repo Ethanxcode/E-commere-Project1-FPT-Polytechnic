@@ -10,13 +10,14 @@ $ct = new cart();
 if (isset($_GET['shiftid'])) {
 
 	$id = $_GET['shiftid'];
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
 	$shifted = $ct->shifted($id, $time, $price, $total_price);
 }
 if (isset($_GET['confid'])) {
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
+
 	$id = $_GET['confid'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
@@ -24,7 +25,7 @@ if (isset($_GET['confid'])) {
 }
 if (isset($_GET['delid'])) {
 	$id = $_GET['delid'];
-	$total_price = $_GET['total_price'];
+	$totalPrice = $_GET['total_price'];
 	$time = $_GET['time'];
 	$price = $_GET['price'];
 	$del_shifted = $ct->del_shifted($id, $time, $price, $total_price);
@@ -91,32 +92,27 @@ if (isset($_GET['delid'])) {
 
 
 
-									<td style="display: flex; flex-wrap: nowrap; gap: 4px"><a class="btn btn-danger"
-											href="?delid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&total_price=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">Xóa</a>
+									<td style="display: flex; flex-wrap: nowrap; gap: 4px">
+										<a class="btn btn-danger"
+											href="?delid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&totalPrice=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">Xóa</a>
 										<a class="btn btn-primary"
-											href="inboxDetailInfo.php?customerid=<?php echo $result['customer_id'] ?>&orderid=<?php echo $result['id'] ?>">Xem
-										</a>
+											href="inboxDetailInfo.php?customerid=<?php echo $result['customer_id'] ?>&orderid=<?php echo $result['id'] ?>">Xem</a>
 									</td>
 									<?php
 									if ($result['status'] == 0) {
 										?>
-										<td><a class="btn btn-danger"
-												href="?shiftid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&total_price=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">
-												xác thực</a></td>
-										<?php
-									} elseif ($result['status'] == 1) {
-										?>
-
 										<td>
-											<a class="btn btn-warning"
-												href="?confid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&total_price=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">
-												Giao hàng</a>
-										</td>
-										<?php
-									} elseif ($result['status'] == 2) {
-										?>
-										<td>
-											<button disabled class="btn btn-success">Hoàn thành</button>
+											<?php if ($result['status'] == 0): ?>
+												<a class="btn btn-danger"
+													href="?shiftid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&totalPrice=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">Xác
+													thực</a>
+											<?php elseif ($result['status'] == 1): ?>
+												<a class="btn btn-warning"
+													href="?confid=<?php echo $result['id'] ?>&price=<?php echo $result['price'] ?>&totalPrice=<?php echo $result['total_price'] ?>&time=<?php echo $result['order_date'] ?>">Giao
+													hàng</a>
+											<?php elseif ($result['status'] == 2): ?>
+												<button disabled class="btn btn-success">Hoàn thành</button>
+											<?php endif; ?>
 										</td>
 										<?php
 									}

@@ -111,15 +111,15 @@ ul.devided > li:last-child {
 }
 
 .dropdown:hover .dropdown-content {
+	display: flex;
 	top: 100%;
 	opacity: 1;
 	visibility: visible;
+	align-items: center;
 }
 
 .dropdown-content {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	/* display: flex; */
 	opacity: 0;
 	visibility: hidden;
 	position: absolute;
